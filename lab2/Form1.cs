@@ -121,7 +121,7 @@ namespace lab2
 
 		public (double, double[]) canon(double x)       // каноническая
 		{
-			for (double i = 0, k = 1.0; k <= 6.0; k += 0.1, i++)
+			for (double i = 0, k = X.Min(); k <= X.Max(); k += 0.1, i++)
 			{
 				Array.Resize(ref Xinter, Xinter.Length + 1);
 				Xinter[(int)i] = k;
@@ -170,9 +170,7 @@ namespace lab2
 			}
 
 			for (int i = 0; i < N; i++)
-			{
 				A[i] = Xmatrix[i, N] / Xmatrix[i, i];
-			}
 
 			for (int i = 0; i < Xinter.Length; i++)
 				for (int j = 0; j < N; j++)
@@ -186,7 +184,7 @@ namespace lab2
 
 		public (double, double[]) liney(double x)       // линейная
 		{
-			for (double i = 0, k = 1.0; k <= 6.0; k += 0.5, i++)
+			for (double i = 0, k = X.Min(); k <= X.Max(); k += 0.5, i++)
 			{
 				Array.Resize(ref Xinter, Xinter.Length + 1);
 				Xinter[(int)i] = k;
@@ -214,7 +212,7 @@ namespace lab2
 
 		public (double, double[]) lagrange(double x)    // лагранж
 		{
-			for (double i = 0, k = 1.0; k <= 6.0; k += 0.1, i++)
+			for (double i = 0, k = X.Min(); k <= X.Max(); k += 0.1, i++)
 			{
 				Array.Resize(ref Xinter, Xinter.Length + 1);
 				Xinter[(int)i] = k;
@@ -247,7 +245,7 @@ namespace lab2
 
 		public (double, double[]) newton(double x)      // ньютон
 		{
-			for (double i = 0, k = 1.0; k <= 6.0; k += 0.1, i++)
+			for (double i = 0, k = X.Min(); k <= X.Max(); k += 0.1, i++)
 			{
 				Array.Resize(ref Xinter, Xinter.Length + 1);
 				Xinter[(int)i] = k;
