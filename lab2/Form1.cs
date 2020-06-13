@@ -184,14 +184,14 @@ namespace lab2
 
 		public (double, double[]) liney(double x)       // линейная
 		{
-			for (double i = 0, k = X.Min(); k <= X.Max(); k += 0.5, i++)
-			{
-				Array.Resize(ref Xinter, Xinter.Length + 1);
-				Xinter[(int)i] = k;
-			}
-			Array.Resize(ref Yinter, Xinter.Length);
+			Array.Resize(ref Xinter, X.Length);
+			Array.Resize(ref Yinter, Y.Length);
+
+			Array.Copy(X, Xinter, X.Length);
+			Array.Copy(Y, Yinter, Y.Length);
 
 			(double, double[]) res = (0, new double[Xinter.Length]);     // кортеж (Yточка, Yинтерп)
+			Array.Copy(Y, res.Item2, Y.Length);
 
 			double[] A = new double[X.Length];
 			double[] B = new double[X.Length];
@@ -200,9 +200,6 @@ namespace lab2
 			{
 				A[i] = (Y[i + 1] - Y[i]) / (X[i + 1] - X[i]);
 				B[i] = Y[i] - A[i] * X[i];
-				res.Item2[i * 2] = Y[i];                    // [1] 2 3
-				res.Item2[i * 2 + 1] = A[i] * Xinter[i * 2 + 1] + B[i];     // 1 [2] 3
-				res.Item2[i * 2 + 2] = Y[i + 1];                // 1 2 [3]
 				if (X[i] <= x && x <= X[i + 1])
 					res.Item1 = A[i] * x + B[i];
 			}
